@@ -16,14 +16,13 @@ class Node:
                 self.center = Node(data)
             else:
                 self.center.insert(data)
-        else:  # data > self.data
+        else:
             if self.right is None:
                 self.right = Node(data)
             else:
                 self.right.insert(data)
 
     def find(self, data):
-        """Finds and returns the node with the given data, or None if not found."""
         if data == self.data:
             return self
         elif data < self.data and self.left:
@@ -32,9 +31,10 @@ class Node:
             return self.right.find(data)
         return None
 
-    def print_tree(self, prefix="", is_last=True):
-        """Prints the tree with visual connections."""
-        print(prefix + ("└── " if is_last else "├── ") + str(self.data))
+    def print_tree(self, prefix="", is_last=True, label=""):
+        connector = "└── " if is_last else "├── "
+        label_prefix = f"{label}:" if label else ""
+        print(prefix + connector + label_prefix + str(self.data))
         prefix += "    " if is_last else "│   "
 
         children = []
@@ -42,21 +42,19 @@ class Node:
         if self.center: children.append(("C", self.center))
         if self.right: children.append(("R", self.right))
 
-        for i, (label, child) in enumerate(children):
+        for i, (lbl, child) in enumerate(children):
             is_last_child = (i == len(children) - 1)
-            print(prefix + f"{label}:")
-            child.print_tree(prefix + "    ", is_last_child)
+            child.print_tree(prefix, is_last_child, lbl)
 
-# Example Usage
-root = Node(0)  # Root node
 
+# Build the tree
+root = Node(0)
 root.insert(1)
 root.insert(2)
 root.insert(3)
 root.insert(4)
 root.insert(14)
-root.insert(13)  
-
+root.insert(13)
 
 node13 = root.find(13)
 if node13:
@@ -66,15 +64,27 @@ if node13:
 
 node22 = node13.find(22)
 if node22:
-    node22.insert(32)
-    node22.insert(32)    
+    node22.insert(32) 
     node22.insert(42)
     node22.insert(52)
     node22.insert(62)
-    
+
+
 node24 = node13.find(24)
 if node24:
     node24.insert(25)
 
+node52 = node22.find(52)
+if node52:
+    node52.insert(53)
+    node52.insert(54)
+    
+node62 = node22.find(62)
+if node62:
+    node62.left = node62.insert(63)
+    node62.insert(72)
+    
 root.insert(15)
+
+# Print the tree
 root.print_tree()
