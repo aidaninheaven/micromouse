@@ -1,3 +1,5 @@
+BLUE = "\033[94m"
+RESET = "\033[0m"
 
 class Node:
     def __init__(self, data):
@@ -18,112 +20,146 @@ class Tree:
       if node is None:
         node = self.root
 
-      print("  " * level + str(node.data))
+      print("--" * level + str(node.data))
       for child in node.children:
         self.print_tree(child, level + 1)
 
 
-#node creation
-node00 = Node("00")
-node01 = Node("01")
-node02 = Node("02")
-node03 = Node("03")
-node04 = Node("04")
-node05 = Node("05")
-node06 = Node("06")
-node07 = Node("07")
-node10 = Node("10")
-node11 = Node("11")
-node12 = Node("12")
-node13 = Node("13")
-node14 = Node("14")
-node15 = Node("15")
-node16 = Node("16")
-node17 = Node("17")
-node20 = Node("20")
-node21 = Node("21")
-node22 = Node("22")
-node23 = Node("23")
-node24 = Node("24")
-node25 = Node("25")
-node26 = Node("26")
-node27 = Node("27")
-node30 = Node("30")
-node31 = Node("31")
-node32 = Node("32")
-node33 = Node("33")
-node34 = Node("34")
-node35 = Node("35")
-node36 = Node("36")
-node37 = Node("37")
-node40 = Node("40")
-node41 = Node("41")
-node42 = Node("42")
-node43 = Node("43")
-node44 = Node("44")
-node45 = Node("45")
-node46 = Node("46")
-node47 = Node("47")
-node50 = Node("50")
-node51 = Node("51")
-node52 = Node("52")
-node53 = Node("53")
-node54 = Node("54")
-node55 = Node("55")
-node56 = Node("56")
-node57 = Node("57")
-node60 = Node("60")
-node61 = Node("61")
-node62 = Node("62")
-node63 = Node("63")
-node64 = Node("64")
-node65 = Node("65")
-node66 = Node("66")
-node67 = Node("67")
-node70 = Node("70")
-node71 = Node("71")
-node72 = Node("72")
-node73 = Node("73")
-node74 = Node("74")
-node75 = Node("75")
-node76 = Node("76")
-node77 = Node("77")
-#tree structure creation
+#create nodes
+node00 = Node(f"{BLUE}0,0{RESET}")
+node01 = Node(f"{BLUE}0,1{RESET}")
+node02 = Node(f"{BLUE}0,2{RESET}")
+node03 = Node(f"{BLUE}0,3{RESET}")
+node04 = Node(f"{BLUE}0,4{RESET}")
+
+node05 = Node("0,5")
+node06 = Node("0,6")
+node07 = Node("0,7")
+node10 = Node("1,0")
+node11 = Node("1,1")
+node12 = Node("1,2")
+
+node13 = Node(f"{BLUE}1,3{RESET}")
+node14 = Node(f"{BLUE}1,4{RESET}")
+
+node15 = Node("1,5")
+node16 = Node("1,6")
+node17 = Node("1,7 DEAD END")
+node20 = Node("2,0")
+node21 = Node("2,1")
+
+node22 = Node(f"{BLUE}2,2{RESET}")
+node23 = Node(f"{BLUE}2,3{RESET}")
+
+node24 = Node("2,4")
+node25 = Node("2,5 DEAD END")
+node26 = Node("2,6")
+node27 = Node("2,7")
+node30 = Node("3,0 DEAD END")
+node31 = Node("3,1")
+
+node32 = Node(f"{BLUE}3,2{RESET}")
+
+node33 = Node("3,3")
+node34 = Node("3,4")
+node35 = Node("3,5 DEAD END")
+node36 = Node("3,6")
+node37 = Node("3,7")
+node40 = Node("4,0 DEAD END")
+node41 = Node("4,1")
+
+node42 = Node(f"{BLUE}4,2{RESET}")
+
+node43 = Node("4,3")
+
+node44 = Node(f"{BLUE}4,4 FINISH{RESET}")
+node45 = Node(f"{BLUE}4,5{RESET}")
+
+node46 = Node("4,6 DEAD END")
+node47 = Node("4,7")
+node50 = Node("5,0")
+node51 = Node("5,1")
+
+node52 = Node(f"{BLUE}5,2{RESET}")
+
+node53 = Node("5,3")
+node54 = Node("5,4")
+
+node55 = Node(f"{BLUE}5,5{RESET}")
+
+node56 = Node("5,6 DEAD END")
+node57 = Node("5,7")
+node60 = Node("6,0")
+node61 = Node("6,1")
+
+node62 = Node(f"{BLUE}6,2{RESET}")
+node63 = Node(f"{BLUE}6,3{RESET}")
+node64 = Node(f"{BLUE}6,4{RESET}")
+node65 = Node(f"{BLUE}6,5{RESET}")
+
+node66 = Node("6,6")
+node67 = Node("6,7")
+node70 = Node("7,0 DEAD END")
+node71 = Node("7,1")
+node72 = Node("7,2")
+node73 = Node("7,3")
+node74 = Node("7,4 DEAD END")
+node75 = Node("7,5 DEAD END")
+node76 = Node("7,6")
+node77 = Node("7,7")
+
+#create tree structure
 node00.add_child(node01)
 node01.add_child(node02)
 node02.add_child(node03)
 node03.add_child(node04)
 node04.add_child(node14)
+
 node14.add_child(node15)
+
 node14.add_child(node13)
 node13.add_child(node12)
 node12.add_child(node11)
+
 node11.add_child(node21)
+
 node11.add_child(node10)
 node10.add_child(node20)
 node20.add_child(node30)
+
 node21.add_child(node31)
 node31.add_child(node41)
+
 node41.add_child(node40)
+
 node41.add_child(node51)
 node51.add_child(node50)
 node50.add_child(node60)
 node60.add_child(node61)
 node61.add_child(node62)
-node62.add_child(node52)
+
 node62.add_child(node63)
+
 node62.add_child(node72)
+
 node72.add_child(node71)
 node71.add_child(node70)
+
 node72.add_child(node73)
 node73.add_child(node74)
+
 node63.add_child(node64)
 node64.add_child(node65)
+
 node65.add_child(node55)
+
 node65.add_child(node75)
+
 node55.add_child(node45)
 node45.add_child(node46)
-node45.add_child(node44)
+
+node45.add_child(node44) #finish
+
 node15.add_child(node05)
 node15.add_child(node16)
 node05.add_child(node06)
@@ -141,8 +177,20 @@ node67.add_child(node77)
 node77.add_child(node76)
 node76.add_child(node66)
 node66.add_child(node65)
-#start of the tree 
+node57.add_child(node56)
+node13.add_child(node23)
+node23.add_child(node24)
+node23.add_child(node22)
+node24.add_child(node25)
+node22.add_child(node32)
+node32.add_child(node42)
+node42.add_child(node52)
+node52.add_child(node53)
+node53.add_child(node54)
+node52.add_child(node62)
+
+#create tree
 tree = Tree(node00)
 
-#print the tree
+#print tree
 tree.print_tree()
